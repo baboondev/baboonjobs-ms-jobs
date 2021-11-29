@@ -1,8 +1,12 @@
 package com.baboondev.baboonjobsmsjobs.controllers;
 
+import com.baboondev.baboonjobsmsjobs.dtos.CreateJobDTO;
 import com.baboondev.baboonjobsmsjobs.models.Job;
 import com.baboondev.baboonjobsmsjobs.services.JobService;
+import io.swagger.models.Response;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,23 +20,17 @@ public class JobController {
     @Autowired
     public JobService jobService;
 
-    @GetMapping
-    public List<Job> getAllJobs() {
-        return jobService.getAllJobs();
-    }
-
+    @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
-    public Job saveJob(@Validated @RequestBody Job job) {
-        return jobService.saveJob(job);
+    public ResponseEntity saveJob(@Validated @RequestBody CreateJobDTO createJobDTO) {
+        try {
+            String authorId = "111"; // get from JWT;
+            Job job = jobService.saveJob(createJobDTO, authorId);
+            return ResponseEntity.ok(job);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+        }
     }
 
-    @PutMapping
-    public Job updateJob(@Validated @RequestBody Job job) {
-        return jobService.updateJob(job);
-    }
 
-    @DeleteMapping("/{id}")
-    public void deleteJob(@PathVariable String id) {
-        jobService.deleteJob(id);
-    }
 }
