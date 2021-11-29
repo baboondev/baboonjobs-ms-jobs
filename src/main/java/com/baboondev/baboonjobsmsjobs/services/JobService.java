@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
+import java.util.Optional;
 
 @Service
 public class JobService {
@@ -26,6 +26,10 @@ public class JobService {
         return jobRepository.save(job);
     }
 
+    public Optional<Job> getById(String id){
+        return jobRepository.findById(id);
+
+    }
     // helpers
     private boolean validateDateToWork(Date date){
         Calendar minValidDate = Calendar.getInstance();

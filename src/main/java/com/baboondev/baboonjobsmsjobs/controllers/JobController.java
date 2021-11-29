@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import io.jsonwebtoken.Claims;
 
 import java.util.Map;
+import java.util.Optional;
 
 @RestController
 @CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.DELETE, RequestMethod.POST, RequestMethod.PUT})
@@ -31,6 +32,16 @@ public class JobController {
             String authorId = claims.get("id").toString();
             Job job = jobService.saveJob(createJobDTO, authorId);
             return ResponseEntity.ok(job);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+        }
+    }
+
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    @GetMapping("/{id}")
+    public ResponseEntity getJob(@PathVariable(value="id") String id){
+        try {
+            return ResponseEntity.ok(jobService.getById(id));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
         }
