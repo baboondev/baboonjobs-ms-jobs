@@ -21,5 +21,4 @@ public class BaboonjobsMsJobsApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(BaboonjobsMsJobsApplication.class, args);
 	}
-
 }
