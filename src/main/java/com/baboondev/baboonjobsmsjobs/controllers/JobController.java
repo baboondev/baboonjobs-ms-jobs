@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import io.jsonwebtoken.Claims;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -37,7 +38,7 @@ public class JobController {
         }
     }
 
-    @ResponseStatus(HttpStatus.ACCEPTED)
+    @ResponseStatus(HttpStatus.OK)
     @GetMapping("/{id}")
     public ResponseEntity getJob(@PathVariable(value="id") String id){
         try {
@@ -46,4 +47,24 @@ public class JobController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
         }
     }
+
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping()
+    public ResponseEntity getJobs(
+            @RequestParam(value = "groupJob", required = false) String groupJob,
+            @RequestParam(value = "authorId", required = false) String authorId,
+            @RequestParam(value = "city", required = false) String city,
+            @RequestParam(value = "country", required = false) String country,
+            @RequestParam(value = "available", required = false) Boolean available,
+            @RequestParam(value = "limit", required = false, defaultValue = "10") int limit,
+            @RequestParam(value = "offset", required = false, defaultValue = "0") int offset
+    ){
+        try {
+            //List<Job> jobs = jobService.getJobs(groupJob, authorId, available, city, country, limit, offset);
+            return ResponseEntity.ok("ok");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+        }
+    }
+
 }

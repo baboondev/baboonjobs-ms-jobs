@@ -5,10 +5,12 @@ import com.baboondev.baboonjobsmsjobs.mappers.JobMapper;
 import com.baboondev.baboonjobsmsjobs.models.Job;
 import com.baboondev.baboonjobsmsjobs.repositories.JobRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.ReactiveFindOperation;
 import org.springframework.stereotype.Service;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -29,6 +31,10 @@ public class JobService {
     public Optional<Job> getById(String id){
         return jobRepository.findById(id);
 
+    }
+
+    public List<Job> getJobs(String groupJob){
+        return jobRepository.findAll();
     }
     // helpers
     private boolean validateDateToWork(Date date){
