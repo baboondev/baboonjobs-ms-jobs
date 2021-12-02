@@ -18,6 +18,7 @@ public class BaboonjobsMsJobsApplication {
 				.paths(PathSelectors.any())
 				.build();
 	}
+
 	public static void main(String[] args) {
 		SpringApplication.run(BaboonjobsMsJobsApplication.class, args);
 	}
