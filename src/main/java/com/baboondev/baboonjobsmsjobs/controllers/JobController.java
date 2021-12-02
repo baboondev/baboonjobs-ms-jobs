@@ -67,4 +67,17 @@ public class JobController {
         }
     }
 
+    @ResponseStatus(HttpStatus.OK)
+    @DeleteMapping("/{id}")
+    public ResponseEntity deleteJob(@RequestHeader Map<String, String> headers, @PathVariable(value="id") String id) {
+        try {
+            Claims claims = JwtUtils.parseJWT(headers.get("token"));
+            String authorId = claims.get("id").toString();
+            Boolean result = jobService.deleteJob(id, authorId);
+            return ResponseEntity.ok(result);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+        }
+    }
+
 }

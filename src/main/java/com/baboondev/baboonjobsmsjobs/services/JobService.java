@@ -36,6 +36,18 @@ public class JobService {
     public List<Job> getJobs(String groupJob){
         return jobRepository.findAll();
     }
+
+    public Boolean deleteJob(String id, String authorId) throws Exception {
+        Optional<Job> foundedJob = jobRepository.findById(id);
+        if(!foundedJob.isPresent()) {
+            throw new Exception("Job not found");
+        }
+        if(foundedJob.get().getAuthorId() != authorId){
+            throw new Exception("You dont have permissions to delete");
+        }
+        jobRepository.deleteById(id);
+        return true;
+    }
     // helpers
     private boolean validateDateToWork(Date date){
         Calendar minValidDate = Calendar.getInstance();
