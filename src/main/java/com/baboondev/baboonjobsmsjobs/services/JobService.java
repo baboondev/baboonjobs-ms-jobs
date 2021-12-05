@@ -66,7 +66,6 @@ public class JobService {
         return true;
     }
 
-    private boolean validateDateToWork(Date date){
     public Job addOffer(OfferDto offer) throws Exception {
         Job job = jobRepository.findById(offer.getJobId()).get();
         
