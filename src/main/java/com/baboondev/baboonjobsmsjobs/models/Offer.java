@@ -17,7 +17,7 @@ public class Offer {
     private String _id;
     private String jobId;
     private String authorId;
+    private String description;
     private Double price;
     private Date createdAt;
-
 }

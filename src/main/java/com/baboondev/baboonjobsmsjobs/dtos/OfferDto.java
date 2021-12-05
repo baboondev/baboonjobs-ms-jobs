@@ -10,5 +10,6 @@ import lombok.NoArgsConstructor;
 public class OfferDto {
     private String jobId;
     private String authorId;
+    private String description;
     private Double price;
 }
