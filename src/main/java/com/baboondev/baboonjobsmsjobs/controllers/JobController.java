@@ -13,8 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Map;
 
 @RestController
-@CrossOrigin(origins = "*", methods = { RequestMethod.GET, RequestMethod.DELETE, RequestMethod.POST,
-        RequestMethod.PUT })
+@CrossOrigin(origins = "*", methods = { RequestMethod.GET, RequestMethod.DELETE, RequestMethod.POST, RequestMethod.PUT })
 @RequestMapping("jobs")
 public class JobController {
 
@@ -23,8 +22,7 @@ public class JobController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
-    public ResponseEntity saveJob(@RequestHeader Map<String, String> headers,
-            @Validated @RequestBody JobDto createJobDTO) {
+    public ResponseEntity saveJob(@RequestHeader Map<String, String> headers, @Validated @RequestBody JobDto createJobDTO) {
         try {
             String userRole = JwtUtils.getRoleByToken(headers.get("token"));
             String userId = JwtUtils.getUserIdByToken(headers.get("token"));
