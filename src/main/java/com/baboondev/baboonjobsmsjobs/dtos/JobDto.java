@@ -1,6 +1,5 @@
 package com.baboondev.baboonjobsmsjobs.dtos;
 
-import com.baboondev.baboonjobsmsjobs.models.Location;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,9 +9,9 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class CreateJobDTO {
+public class JobDto {
     private String groupJob;
     private Date dateToWork;
-    private Location location;
+    private String location;
     private String description;
 }
