@@ -4,6 +4,7 @@ import com.baboondev.baboonjobsmsjobs.dtos.JobDto;
 import com.baboondev.baboonjobsmsjobs.services.JobService;
 import com.baboondev.baboonjobsmsjobs.util.JwtUtils;
 
+import io.jsonwebtoken.Claims;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -98,7 +99,7 @@ public class JobController {
     @DeleteMapping("/{id}")
     public ResponseEntity deleteJob(@RequestHeader Map<String, String> headers, @PathVariable(value="id") String id) {
         try {
-            Claims claims = JwtUtils.parseJWT(headers.get("token"));
+            Claims claims = JwtUtils.verifyToken(headers.get("token"));
             String authorId = claims.get("id").toString();
             Boolean result = jobService.deleteJob(id, authorId);
             return ResponseEntity.ok(result);
