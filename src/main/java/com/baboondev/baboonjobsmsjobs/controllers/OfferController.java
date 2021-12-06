@@ -48,7 +48,7 @@ public class OfferController {
 		try {
 			String userRole = JwtUtils.getRoleByToken(headers.get("token"));
 
-			if (!userRole.equals("employee") && !userRole.equals("admin")) {
+			if (!userRole.equals("employeer") && !userRole.equals("admin")) {
 				return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("No authorized");
 			}
 
