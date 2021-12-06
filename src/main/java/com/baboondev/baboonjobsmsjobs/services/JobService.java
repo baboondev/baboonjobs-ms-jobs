@@ -39,7 +39,16 @@ public class JobService {
     }
 
     public List<Job> getAllJobs() {
-        return jobRepository.findAll().stream().filter(job -> job.getAcceptedOffer() == null).toList();
+        List<Job> jobs = jobRepository.findAll();
+        List<Job> jobsToReturn = new ArrayList<>();
+
+        for (Job job : jobs) {
+            if (job.getAcceptedOffer().equals(null)) {
+                jobsToReturn.add(job);
+            }
+        }
+
+        return jobsToReturn;
     }
 
     public Optional<Job> getJobById(String id) {
