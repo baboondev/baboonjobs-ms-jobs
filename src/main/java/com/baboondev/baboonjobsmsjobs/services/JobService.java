@@ -51,7 +51,8 @@ public class JobService {
     }
 
     public List<Job> getJobsByEmplooyeId(String emplooyerId) {
-        return jobRepository.findByEmplooyeId(emplooyerId);
+        List<Job> jobs =  jobRepository.findByEmplooyeId(emplooyerId);
+        return jobs;
     }
 
     public Job addOffer(OfferDto offer) throws Exception {

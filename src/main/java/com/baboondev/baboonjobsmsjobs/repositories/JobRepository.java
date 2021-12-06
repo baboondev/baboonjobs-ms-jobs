@@ -13,6 +13,6 @@ public interface JobRepository extends MongoRepository<Job, String> {
   @Query("{ 'authorId' : ?0 }")
   List<Job> findByEmplooyerId(String employeerId);
 
-  @Query("{ 'acceptedOffer.authorId' : ?0 }")
+  @Query("{ 'offers.authorId' : ?0 }")
   List<Job> findByEmplooyeId(String employeeId);
 }
