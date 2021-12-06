@@ -39,7 +39,7 @@ public class JobService {
     }
 
     public List<Job> getAllJobs() {
-        return jobRepository.findAll();
+        return jobRepository.findAll().stream().filter(job -> job.getAcceptedOffer() == null).toList();
     }
 
     public Optional<Job> getJobById(String id) {
